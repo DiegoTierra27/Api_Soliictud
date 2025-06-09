@@ -1,0 +1,120 @@
+﻿@model List<Solicitudes>
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+	<h1 class="display-4">Welcome</h1>
+
+
+</div>
+
+
+<div class="card">
+	<div class="card-header">
+		@ViewBag.Accion
+	</div>
+	<div class="card-body">
+
+	@* 	<a asp-action="CrearSolicitudes" asp-controller="CreacionSolicitud" asp-route-Id="0" class="btn btn-success btn-sm">Nuevo Producto</a>
+ *@
+		<hr />
+
+
+		<form asp-action="FiltrarPorEstado" asp-controller="BandejaAprobador" method="post">
+			<select name="estado" class="form-control" style="width: 200px; display: inline-block;">
+				<option value="AP">APROBADO</option>
+				<option value="PE" selected>PENDIENTE</option>
+				<option value="RE">RECHAZADO</option>
+			</select>
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</form>
+
+
+		<hr />
+
+		@if (Model != null && Model.Any())
+		{
+
+			<table class="table">
+				<thead>
+					<tr>
+						<td>Codigo</td>
+						<td>Descripcion</td>
+						<td>Monto</td>
+						<td>Fecha</td>
+						<td>Estado</td>
+						<td>Solicitante</td>
+						 <td>Comentario</td> 
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.Id</td>
+							<td>@item.Descripcion</td>
+							@* <td>@item.Monto</td> *@
+							<td>@item.Monto.ToString("C")</td>
+							<td>@item.FechaEsperada</td>
+							<td>
+								@if (item.Estado == "PE")
+								{
+									<span class="badge bg-danger">Solicitud Pendiente</span>
+								}
+								else if (item.Estado == "RE")
+								{
+									<span class="badge bg-danger">Solicitud Rechazada</span>
+								}
+								else if (item.Estado == "AP")
+								{
+									<span class="badge bg-success">Solicitud Aprobada</span>
+								}
+							</td>
+							<td>@item.Solicitante</td>
+						@* 	 	<td>
+
+								<a asp-action="EditarSolicitud" asp-controller="BandejaAprobador" asp-route-Id="@item.Id" class="btn btn-primary btn-sm">Editar Solicitud</a>
+								<a asp-action="EliminarSolicitudes" asp-controller="BandejaAprobador" asp-route-Id="@item.Id" class="btn btn-danger btn-sm">Eliminar Solicitud</a>
+
+
+						</td>  *@
+
+							<td>
+								@if (item.Estado == "PE")
+								{
+									<a asp-action="EditarSolicitud" asp-controller="BandejaAprobador" asp-route-Id="@item.Id" class="btn btn-primary btn-sm">Editar Solicitud</a>
+									
+								}
+								else if (item.Estado == "RE")
+								{
+									@item.Comentario
+								}
+								else if (item.Estado == "AP")
+								{
+									@item.Comentario
+								}
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		}
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

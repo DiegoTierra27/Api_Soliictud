@@ -1,0 +1,54 @@
+﻿@model Solicitudes
+@{
+	ViewData["Title"] = "Solicitudes";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+	<div class="card-header">
+		@ViewBag.Accion
+	</div>
+	<div class="card-body">
+
+		<form asp-action="GuardarNuevasSolicitudes" asp-controller="Home" method="post">
+@* 
+			<input asp-for="Id_solicitud" type="hidden" />
+
+			<div class="mb-2">
+				<label class="form-label">Nombre_Usuario</label>
+				<input type="text" class="form-control form-control-sm" asp-for="Nombre_Usuario" />
+			</div>
+
+			<div class="mb-2">
+				<label class="form-label">Descripcion</label>
+				<input type="text" class="form-control form-control-sm" asp-for="Descripcion" />
+			</div>
+
+
+			<div class="mb-2">
+				<label class="form-label">Direccion</label>
+				<input type="text" class="form-control form-control-sm" asp-for="Direccion" />
+			</div>
+
+			<div class="mb-2">
+				<label class="form-label">Des_Compra</label>
+				<input type="text" class="form-control form-control-sm" asp-for="Des_Compra" />
+			</div>
+
+			<div class="mb-2">
+				<label class="form-label">Des_Estado</label>
+				<input type="text" class="form-control form-control-sm" asp-for="Des_Estado" />
+			</div> *@
+
+			<button type="submit" class="btn btn-sucess btn-sm">Guardar Cambios</button>
+
+			<a asp-action="Index" asp-controller="Home" class="btn btn-warning btn-sm">volver</a>
+
+		</form>
+
+	<hr />
+
+	</div>
+</div>
+

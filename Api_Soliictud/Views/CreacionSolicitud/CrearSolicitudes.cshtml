@@ -1,0 +1,96 @@
+﻿@model Solicitudes
+@{
+	ViewData["Title"] = "Solicitudes";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+	<div class="card-header">
+		@ViewBag.Accion
+	</div>
+	<div class="card-body">
+
+		<form asp-action="GuardarNuevasSolicitudes" asp-controller="CreacionSolicitud" method="post">
+
+			<input asp-for="Id" type="hidden" />
+
+			<div class="mb-2">
+				<label class="form-label">Descripcion</label>
+				<input type="text" id="Descripcion" name="Descripcion" class="form-control form-control-sm" asp-for="Descripcion" />
+			</div>
+
+			<div class="mb-2">
+				<label class="form-label">Monto</label>
+				<input type="number" step="0.01" class="form-control form-control-sm" placeholder="Monto" asp-for="Monto" id="Monto" name="Monto" />
+			</div>
+
+
+			<div class="mb-2">
+				<label class="form-label">Fecha</label>
+				<input name="fecha" id="fecha" type="date" class="form-control form-control-sm" asp-for="FechaEsperada" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+
+			</div>
+
+			<div class="mb-2">
+				<label class="form-label">Estado</label>
+				<select name="estado" class="form-control" style="width: 200px; display: inline-block;">
+					<option value="AP">APROBADO</option>
+					<option value="PE" selected>PENDIENTE</option>
+					<option value="RE">RECHAZADO</option>
+				</select>
+			</div>
+
+
+			<button type="submit" class="btn btn-sucess btn-sm" onclick="return validarGuardadoUsuario()">Guardar Cambios</button>
+
+			<a asp-action="Index" asp-controller="CreacionSolicitud" class="btn btn-warning btn-sm">volver</a>
+
+		</form>
+
+		<hr />
+
+	</div>
+</div>
+
+
+@section Scripts {
+	<script>
+		function validarGuardadoUsuario() {
+			//const estado = document.getElementById("estado").value;
+			var monto = parseFloat(document.getElementById("Monto").value);
+			var descr = document.getElementById("Descripcion").value.trim();
+			var fecha = document.getElementById("fecha").value.trim();
+
+			console.log(monto);
+			console.log(descr);
+			console.log(fecha);
+
+
+			if (descr != "") {
+				if (monto != "") {
+					return true; // Permite el envío
+
+
+			}
+
+				}
+				else{
+				alert("Debe ingresar un monto correcto");
+				return false; // No envía el formulario
+			}
+			}
+			else{
+				alert("Debe ingresar una descripcion");
+				return false; // No envía el formulario
+			}
+
+			if (estado === "AP" && monto > 5000 && comentario === "") {
+				alert("Debe ingresar un comentario si aprueba montos mayores a $5000.");
+				return false; // No envía el formulario
+			}
+
+			//return true; // Permite el envío
+		}
+	</script>
+}
