@@ -10,8 +10,8 @@ Este proyecto es una aplicación web construida con **ASP.NET Core MVC + Web API
 - **SQL Server**: 2019 o superior  
 - **Visual Studio 2022** o Visual Studio Code  
 - **Navegador**: Chrome, Edge o Firefox  
-- **Puerto Web API**: `https://localhost:5001` (ajustable en `launchSettings.json`)  
-- **Puerto Aplicación MVC**: `https://localhost:5002` (ajustable)
+- **Puerto Web API**: `https://localhost:5073` (ajustable en `launchSettings.json`)  
+- **Puerto Aplicación MVC**: `https://localhost:5024` (ajustable)
 
 ---
 
